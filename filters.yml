@@ -13,7 +13,7 @@
   - name: Running Commands
     shell: ls -lrt
     args:
-      chdir: /etc/host
+      chdir: /etc/
     register: result
 
   - name: Testing Variables
