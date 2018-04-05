@@ -1,0 +1,29 @@
+---
+- name: Filters
+  hosts: all
+  tasks:
+  - name: Test connection
+    ping:
+    remote_user: root
+
+  - name: Printing IP Address
+    debug:
+      msg: "{{ansible_dns.nameservers}}"
+
+  - name: Running Commands
+    shell: ls -lrt
+    args:
+      chdir: /etc/host
+    register: result
+
+  - name: Testing Variables
+    debug:
+      msg: "{{100|random}}"
+    tags:
+      - Temp
+      - Temp2
+
+  - name: Filter Variables
+    debug:
+      msg: "{{result}}"
+    when: results is not defined
